@@ -11,14 +11,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* Super Game Boy style monochrome palettes */
     --lcd-bg: #8c9b6b;
     --text-color: #1a1c21;
-    --cyan: #00ffff;
-    --green: #2a9d8f;
-    --yellow: #ffee00;
-    --red: #ff3333;
-    --btn-color: #2a2d37;
     --font: 'Press Start 2P', cursive;
   }
 
@@ -48,7 +42,7 @@
     padding: 20px;
   }
 
-  /* Classic "LCD screen" overlay */
+  /* Screen Bezel */
   .screen-bezel {
     background: #222;
     padding: 25px;
@@ -76,30 +70,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 15px 20px;
+    padding: 20px;
     position: relative;
     overflow: hidden;
     box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
     border-radius: 4px;
     border: 2px solid #555;
   }
-
-  /* Persistent Header (Row 0 - Teletext anchor logic) */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid var(--text-color);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .header-pnum { }
-  .header-name { text-align: center; }
-  .header-search { font-weight: bold; }
-  .header-datetime { text-align: right; }
 
   /* Content area */
   .pages-container {
@@ -119,28 +96,18 @@
   }
   .hidden { display: none !important; }
 
-  /* STRICT POKÉMON FRAME BORDERS */
   h1 { font-size: 16px; margin-bottom: 12px; }
   h2 { font-size: 14px; margin-bottom: 6px; }
-
-  .cyan { color: var(--cyan); }
-  .yellow { color: var(--yellow); }
-  .green { color: var(--green); }
-  .white { color: var(--white); }
-  .red { color: var(--red); }
 
   .blink { animation: blinker 1s step-start infinite; }
   @keyframes blinker { 50% { opacity: 0; } }
 
-  .concealed { color: var(--lcd-bg) !important; }
-  .concealed.revealed { color: var(--text-color) !important; }
-
-  /* Styled as a Pokédex grid header */
+  /* Pokédex grid header */
   .grid-header {
     display: grid;
-    grid-template-columns: 40px 1fr 60px;
+    grid-template-columns: 40px 1fr;
     border-bottom: 1px solid var(--text-color);
-    padding-bottom: 3px;
+    padding-bottom: 5px;
     margin-bottom: 5px;
     font-size: 10px;
   }
@@ -150,11 +117,11 @@
     overflow-y: auto;
   }
 
-  /* Styled like Pokédex entries with '►' selection indicators */
+  /* Pokédex entries with '►' selection indicators */
   .row {
     display: grid;
-    grid-template-columns: 40px 1fr 60px;
-    padding: 6px 0;
+    grid-template-columns: 40px 1fr;
+    padding: 8px 0;
     cursor: pointer;
     text-decoration: none;
     color: var(--text-color);
@@ -164,7 +131,7 @@
 
   .row:hover { color: #fff; background-color: rgba(0,0,0,0.6); }
 
-  /* Generic Pokemon Dialogue Box Frame */
+  /* Pokemon Dialogue Box Frame */
   .pokemon-box {
     border: 3px solid var(--text-color);
     padding: 12px;
@@ -185,7 +152,7 @@
     background-color: var(--text-color);
   }
 
-  /* Bottom selection toolbar (Row 24 anchor logic) */
+  /* Bottom Game Boy style menu */
   .fastext {
     display: flex;
     justify-content: space-between;
@@ -203,10 +170,9 @@
     border: 2px solid var(--text-color);
     color: var(--text-color);
   }
-  .fast-btn span { font-weight: bold; }
   .fast-btn:hover { background: var(--text-color); color: var(--lcd-bg); }
 
-  /* Right-side Physical Hardware Controls Panel */
+  /* Hardware Side Panel */
   .gb-controls {
     background: #343847;
     padding: 15px;
@@ -216,107 +182,101 @@
     justify-content: space-around;
   }
 
-  /* Digital Numpad for Teletext navigation */
-  .input-display {
-    width: 100%;
-    background: #111;
-    border: 2px solid #ff3333;
-    color: #ff3333;
-    font-size: 28px;
+  .remote-title {
+    font-size: 12px;
     text-align: center;
-    padding: 5px 0;
-    margin-top: 10px;
-    letter-spacing: 4px;
-    font-weight: bold;
-    border-radius: 4px;
-  }
-
-  .numpad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    color: #888;
+    border-bottom: 2px solid #222;
     width: 100%;
-    margin: 15px 0;
+    padding-bottom: 5px;
   }
 
-  .num-btn {
-    background: #2a2d37;
-    border: 1px solid #444;
-    color: #eee;
-    font-family: var(--font);
-    font-size: 20px;
-    padding: 12px 0;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 6px;
-    box-shadow: 0 3px 0 #111;
-    font-weight: bold;
-  }
-
-  .num-btn:active {
-    transform: translateY(2px);
-    box-shadow: 0 1px 0 #111;
-  }
-
-  .num-btn:hover {
-    background: #3a3f4d;
-    border-color: #666;
-  }
-
-  /* Physical Game Boy D-Pad, A/B, Select/Start layout */
   .gb-interaction {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 10px;
+    gap: 15px;
+    margin-top: auto;
   }
 
-  .gb-row-top { display: flex; gap: 10px; width: 100%; justify-content: space-between;}
-  .d-pad-up-down { display: flex; flex-direction: column; gap: 4px;}
+  .gb-row-top { 
+    display: flex; 
+    gap: 15px; 
+    width: 100%; 
+    justify-content: space-between;
+  }
+
+  .d-pad { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 4px;
+  }
+
   .d-pad-btn {
     background: #111;
-    color: var(--green);
+    color: #fff;
     border: 1px solid #444;
     font-size: 16px;
     font-family: var(--font);
     padding: 10px 14px;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
   }
 
-  .ab-btns { display: flex; gap: 8px;}
+  .ab-btns { 
+    display: flex; 
+    gap: 10px;
+    align-items: flex-end;
+  }
+
   .ab-btn {
     background: #c33;
     color: #fff;
     border: 2px solid #111;
-    font-size: 20px;
+    font-size: 18px;
     font-family: var(--font);
     width: 45px;
     height: 45px;
     border-radius: 50%;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 4px 0 #111;
   }
 
-  .select-start { display: flex; gap: 6px; width: 100%; }
+  .ab-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #111;
+  }
+
+  .select-start { 
+    display: flex; 
+    gap: 8px; 
+    width: 100%; 
+  }
+
   .ss-btn {
     background: #777;
     color: #111;
     border: 1px solid #333;
-    font-size: 9px;
+    font-size: 8px;
     font-family: var(--font);
-    padding: 5px 0;
+    padding: 6px 0;
     width: 100%;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
+    box-shadow: 0 3px 0 #111;
+  }
+
+  .ss-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #111;
   }
 
   @media (max-width: 800px) {
     .gb-hardware { grid-template-columns: 1fr; height: auto; }
     .gb-controls { display: none; }
-    .gb-controls { border-right: none; height: 80vh; }
   }
 </style>
 </head>
@@ -325,24 +285,11 @@
     
     <div class="screen-bezel">
       <div class="screen">
-        <div class="header">
-          <span class="header-pnum" id="hdr-pnum">P100</span>
-          <span class="header-name">RONAN</span>
-          <span class="header-search" id="hdr-search">100</span>
-          <span class="header-datetime">
-            <span id="live-date">1 Apr</span> 
-            <span id="live-time" style="margin-left: 10px;">22:10:00</span>
-          </span>
-        </div>
 
         <div class="pages-container">
 
-          <div id="loading-block" class="page hidden" style="justify-content: center; align-items: center;">
-               <p class="blink" style="font-size: 30px;">██</p>
-          </div>
-
           <div class="page" id="page-100">
-            <h1>Ronan Sullivan</h1>
+            <h1>RONAN SULLIVAN</h1>
             
             <div class="pokemon-box">
               <p>OAK: Hello there! It's so good to see you!</p>
@@ -356,53 +303,20 @@
           </div>
 
           <div class="page hidden" id="page-101">
-            <h1>POKéDEX DIRECTORY</h1>
+            <h1>POKéDEX LIST</h1>
             <div class="grid-header">
-              <span>Nº</span><span>DATA</span><span></span>
+              <span>Nº</span><span>DATA</span>
             </div>
             <div class="file-list">
               <div class="row" onclick="changePage('110')">
-                <span>►110</span><span>SPORTS REPORTS</span><span></span>
+                <span>►1</span><span>SPORTS REPORTS</span>
               </div>
               <div class="row" onclick="changePage('120')">
-                <span>►120</span><span>THEATRE REVIEWS</span><span></span>
+                <span>►2</span><span>THEATRE REVIEWS</span>
               </div>
               <div class="row" onclick="changePage('130')">
-                <span>►130</span><span>BOOKS & PIECES</span><span></span>
+                <span>►3</span><span>BOOKS & PIECES</span>
               </div>
-              <div class="row" onclick="changePage('100')">
-                <span>►100</span><span>MAIN INDEX</span><span></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="page hidden" id="page-102">
-            <h1>ABOUT Ronan</h1>
-            <div class="pokemon-box">
-              <p>PROF PROFILE</p>
-              <p>OAK: Ronan is a dynamic and focused writer. He has a strong portfolio covering live sports reporting, critical cultural analysis, and long-form columns.</p>
-            </div>
-            <div class="pokemon-box">
-              <p>SKILLS: </p>
-              <p>* Editorial Writing<br>
-                 * Cultural Criticism<br>
-                 * Copywriting</p>
-            </div>
-          </div>
-
-          <div class="page hidden" id="page-103">
-            <h1>CONTACT Ronan</h1>
-            <div class="pokemon-box">
-              <p>Looking to connect?</p>
-              <p>Ronan is always looking to connect with editors, fellow writers, or anyone interested in his work.</p>
-            </div>
-            <div class="file-list" style="margin-top: auto;">
-              <a class="row" href="mailto:ronansullivan@hotmail.co.uk">
-                <span>►@</span><span>Email Me</span><span></span>
-              </a>
-              <a class="row" href="https://www.linkedin.com/in/ronanmsullivan/" target="_blank">
-                <span>►LN</span><span>LinkedIn</span><span></span>
-              </a>
             </div>
           </div>
 
@@ -410,7 +324,7 @@
             <h1>Sports Report</h1>
             <div class="pokemon-box">
               <p>HISTORIC EUROPEAN DEBUT FOR ENFIELD TOWN</p>
-              <p>Enfield Town kicked off their first-ever European Fenix Trophy campaign with a hard-fought 3-1 victory over reigning champions BK Skjold.</p>
+              <p>Enfield Town kicked off their first-ever European Fenix Trophy campaign with a hard-fought 3-1 victory over BK Skjold.</p>
             </div>
             <div class="pokemon-box">
               <p>MANAGER'S THOUGHTS</p>
@@ -422,10 +336,10 @@
             <h1>Theatre & Arts</h1>
             <div class="file-list">
               <a class="row" href="https://ronanswriting.blogspot.com/2023/05/national-theatre-review-motive-and-cue.html" target="_blank">
-                <span>►</span><span>The Motive and the Cue</span><span></span>
+                <span>►</span><span>The Motive and the Cue</span>
               </a>
               <a class="row" href="https://ronanswriting.blogspot.com/2023/05/national-theatre-dancing-at-lughnasa.html" target="_blank">
-                <span>►</span><span>Dancing at Lughnasa</span><span></span>
+                <span>►</span><span>Dancing at Lughnasa</span>
               </a>
             </div>
           </div>
@@ -434,16 +348,16 @@
             <h1>Books & Columns</h1>
             <div class="file-list">
               <a class="row" href="https://ronanswriting.blogspot.com/2022/12/book-review-wednesday-second-place-by.html" target="_blank">
-                <span>►</span><span>My Brilliant Friend</span><span></span>
+                <span>►</span><span>My Brilliant Friend</span>
               </a>
               <a class="row" href="https://ronanswriting.blogspot.com/2022/12/book-review-wednesday-second-place-by.html" target="_blank">
-                <span>►</span><span>Second Place</span><span></span>
+                <span>►</span><span>Second Place</span>
               </a>
               <a class="row" href="https://impactnottingham.com/2018/03/acting-souljam-drunk-texting-grateful-another-month-life-freshers-columnist/" target="_blank">
-                <span>►</span><span>Acting Souljam...</span><span></span>
+                <span>►</span><span>Acting Souljam...</span>
               </a>
               <a class="row" href="https://impactnottingham.com/2018/01/fresh-year-freshers-columnist/" target="_blank">
-                <span>►</span><span>Fresh Year</span><span></span>
+                <span>►</span><span>Fresh Year</span>
               </a>
             </div>
           </div>
@@ -451,97 +365,39 @@
         </div> 
 
         <div class="fastext">
-          <div class="fast-btn" onclick="changePage('100')">INDEX</div>
+          <div class="fast-btn" onclick="changePage('100')">HOME</div>
           <div class="fast-btn" onclick="changePage('101')">POKéDEX</div>
-          <div class="fast-btn" onclick="changePage('102')">ABOUT</div>
-          <div class="fast-btn" onclick="changePage('103')">CONTACT</div>
         </div>
 
       </div> 
     </div>
 
     <div class="gb-controls">
-      <div class="remote-title">PokéNav System</div>
-      
-      <div class="input-display" id="display-digits">100</div>
-      <div class="numpad">
-        <button class="num-btn" onclick="pressKey('1')">1</button>
-        <button class="num-btn" onclick="pressKey('2')">2</button>
-        <button class="num-btn" onclick="pressKey('3')">3</button>
-        <button class="num-btn" onclick="pressKey('4')">4</button>
-        <button class="num-btn" onclick="pressKey('5')">5</button>
-        <button class="num-btn" onclick="pressKey('6')">6</button>
-        <button class="num-btn" onclick="pressKey('7')">7</button>
-        <button class="num-btn" onclick="pressKey('8')">8</button>
-        <button class="num-btn" onclick="pressKey('9')">9</button>
-        <button class="num-btn" style="color:var(--red);" onclick="clearInput()">C</button>
-        <button class="num-btn" onclick="pressKey('0')">0</button>
-        <button class="num-btn" style="color:var(--green);" onclick="submitPage()">➔</button>
-      </div>
+      <div class="remote-title">CONTROLS</div>
 
       <div class="gb-interaction">
         <div class="gb-row-top">
-          <div class="d-pad-up-down">
+          <div class="d-pad">
             <button class="d-pad-btn" onclick="prevPage()">▲</button>
             <button class="d-pad-btn" onclick="nextPage()">▼</button>
           </div>
           <div class="ab-btns">
-            <button class="ss-btn" style="padding: 18px 0;" onclick="revealHidden()">[ ? ]</button>
-            <button class="ab-btn" style="background: #111;" onclick="clearInput()">B</button>
-            <button class="ab-btn" onclick="submitPage()">A</button>
+            <button class="ab-btn" style="background: #111;">B</button>
+            <button class="ab-btn" onclick="goToCurrentSelection()">A</button>
           </div>
         </div>
         <div class="select-start">
-            <button class="ss-btn" onclick="changePage('100')">SELECT (Idx)</button>
-            <button class="ss-btn" onclick="changePage('101')">START (Dir)</button>
+            <button class="ss-btn" onclick="changePage('100')">SELECT</button>
+            <button class="ss-btn" onclick="changePage('101')">START</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    let inputBuffer = "";
     let currentPage = "100";
-    let isRolling = false; 
+    const validPages = ['100', '101', '110', '120', '130'];
 
-    const validPages = ['100', '101', '102', '103', '110', '120', '130'];
-
-    const displayEl = document.getElementById('display-digits');
-    const hdrPnum = document.getElementById('hdr-pnum');
-    const hdrSearch = document.getElementById('hdr-search');
-    const loadingBlock = document.getElementById('loading-block');
-
-    setInterval(() => {
-      const now = new Date();
-      document.getElementById('live-time').innerText = now.toTimeString().split(' ')[0];
-    }, 1000);
-
-    function pressKey(num) {
-      if (isRolling) return;
-      if (inputBuffer.length < 3) {
-        inputBuffer += num;
-        displayEl.innerText = inputBuffer.padEnd(3, '.');
-      }
-      if (inputBuffer.length === 3) {
-        setTimeout(submitPage, 250); 
-      }
-    }
-
-    function clearInput() {
-      if (isRolling) return;
-      inputBuffer = "";
-      displayEl.innerText = "...";
-    }
-
-    function submitPage() {
-      if (isRolling) return;
-      if (inputBuffer.length === 3) {
-        changePage(inputBuffer);
-        clearInput();
-      }
-    }
-
-    // New Physical Controls: D-Pad Nav
     function prevPage() {
         const index = validPages.indexOf(currentPage);
         if(index > 0) changePage(validPages[index-1]);
@@ -551,69 +407,25 @@
         if(index < validPages.length - 1) changePage(validPages[index+1]);
     }
 
+    // "A" button mimics interacting with the Pokédex if on that directory page
+    function goToCurrentSelection() {
+      if (currentPage === '101') {
+        changePage('110');
+      }
+    }
+
     window.addEventListener('keydown', (e) => {
-      if (isRolling) return;
-      if (e.key >= '0' && e.key <= '9') {
-        pressKey(e.key);
-      } else if (e.key === 'Backspace' || e.key === 'Escape') {
-        clearInput();
-      } else if (e.key === 'Enter') {
-        submitPage();
-      } else if (e.key === 'ArrowUp') { prevPage(); }
-        else if (e.key === 'ArrowDown') { nextPage(); }
+      if (e.key === 'ArrowUp') { prevPage(); }
+      else if (e.key === 'ArrowDown') { nextPage(); }
     });
 
     function changePage(targetPage) {
-      
-      if (!validPages.includes(targetPage)) {
-        alert("Page " + targetPage + " not found!");
-        return;
-      }
-
+      if (!validPages.includes(targetPage)) return;
       if (targetPage === currentPage) return;
 
-      isRolling = true;
       document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
-      loadingBlock.classList.remove('hidden'); 
-
-      const targetVal = parseInt(targetPage);
-      let currentTickerVal = parseInt(currentPage) + 1;
-
-      const rollInterval = setInterval(() => {
-        let distance;
-        if (targetVal >= currentTickerVal) {
-          distance = targetVal - currentTickerVal;
-        } else {
-          distance = (200 - currentTickerVal) + targetVal; 
-        }
-
-        if (distance > 10) {
-          const jump = 5 + Math.floor(Math.random() * 15);
-          currentTickerVal += jump;
-        } else {
-          currentTickerVal++;
-        }
-
-        if (currentTickerVal > 199) {
-          currentTickerVal = 100;
-        }
-
-        hdrSearch.innerText = currentTickerVal.toString();
-
-        if (currentTickerVal === targetVal) {
-          clearInterval(rollInterval);
-          hdrSearch.innerText = targetPage;
-          
-          setTimeout(() => {
-            loadingBlock.classList.add('hidden');
-            document.getElementById('page-' + targetPage).classList.remove('hidden');
-            
-            hdrPnum.innerText = 'P' + targetPage;
-            currentPage = targetPage;
-            isRolling = false;
-          }, 400); 
-        }
-      }, 65); 
+      document.getElementById('page-' + targetPage).classList.remove('hidden');
+      currentPage = targetPage;
     }
   </script>
 </body>
